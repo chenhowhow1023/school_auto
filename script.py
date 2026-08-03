@@ -21,10 +21,13 @@ TARGET_SECOND = 0
 
 # ===== 3. 設定 Chrome 瀏覽器 (針對 GNOME Wayland / Headless 最佳化) =====
 chrome_options = Options()
+# ===== Wayland / Linux 專用無頭模式參數 =====
+chrome_options.add_argument("--headless=new")
+chrome_options.add_argument("--ozone-platform=headless")
 chrome_options.add_argument("--no-sandbox")
 chrome_options.add_argument("--disable-dev-shm-usage")
 chrome_options.add_argument("--disable-gpu")
-chrome_options.add_argument("--window-size=1280,960")
+chrome_options.add_argument("--window-size=1920,1080")
 chrome_options.add_argument(
     "--user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML,"
     " like Gecko) Chrome/126.0.0.0 Safari/537.36"
