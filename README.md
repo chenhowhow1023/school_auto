@@ -14,16 +14,11 @@ chmod +x install.sh run.sh
 在執行前，請先編輯 `script.py` 中的個人資訊與報名目標：
 
 ```python
-# 填入帳號與密碼（請保留雙引號）
-STUDENT_ID = "YOUR_STUDENT_ID"
-PASSWORD = "YOUR_PASSWORD"
+# ===== 1. 報名個人資訊與課程設定 =====
+STUDENT_ID = "YOUR_STUDENT_ID"  # 請替換為你的帳號
+PASSWORD = "YOUR_PASSWORD"  # 請替換為你的密碼
 
-# 依優先順序填入目標課程關鍵字（支援模糊比對）
-TARGET_COURSES = [
-    "02.桌球D班",
-    "桌球D班",
-    "羽球班",
-    "英文1A班"
-]
+# 依優先順序填入目標課程關鍵字（支援模糊匹配，如 "桌球D班" 亦可匹配 "02.桌球D班"）
+TARGET_COURSES = ["優先1", "優先2", "優先3", "優先4"]
 ```
 Scripted by Gemini Tested by Me

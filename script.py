@@ -12,7 +12,7 @@ STUDENT_ID = "YOUR_STUDENT_ID"  # 請替換為你的帳號
 PASSWORD = "YOUR_PASSWORD"  # 請替換為你的密碼
 
 # 依優先順序填入目標課程關鍵字（支援模糊匹配，如 "桌球D班" 亦可匹配 "02.桌球D班"）
-TARGET_COURSES = ["桌球A班", "桌球D班", "羽球班", "英文1A班"]
+TARGET_COURSES = ["優先1", "優先2", "優先3", "優先4"]
 
 # ===== 2. 設定搶課啟動時間 (目前設定：12:00:00 啟動) =====
 TARGET_HOUR = 12
