@@ -14,7 +14,7 @@ chmod +x install.sh run.sh
 在執行前，請先編輯 `script.py` 中的個人資訊與報名目標：
 
 ```python
-# 填入學號與密碼（請保留雙引號）
+# 填入帳號與密碼（請保留雙引號）
 STUDENT_ID = "YOUR_STUDENT_ID"
 PASSWORD = "YOUR_PASSWORD"
 
