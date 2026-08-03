@@ -148,15 +148,17 @@ try:
     time.sleep(0.1)  # 0.1 秒高頻輪詢
 
   # =========================================================
-  # 階段 3：12:00:00 時間到達，執行掃描與報名 (#tab1 ~ #tab6)
+  # 階段 3：20:00:00 時間到達，執行掃描與報名 (#tab1 ~ #tab6)
   # =========================================================
   base_url = "https://register.shps.tp.edu.tw/class_list_3.asp"
   tabs = [f"#tab{i}" for i in range(1, 7)]
 
-  enrollment_successful = False
+  success_courses = []  # 記錄所有成功報名的課程
 
+  # 逐一掃描每個目標課程（搶完優先1後，會繼續搶優先2、3...）
   for course_keyword in TARGET_COURSES:
-    print(f"\n正在尋找目標課程：【{course_keyword}】...")
+    print(f"\n[掃描中] 正在尋找目標課程：【{course_keyword}】...")
+    course_enrolled = False
 
     for tab in tabs:
       target_tab_url = f"{base_url}{tab}"
@@ -164,7 +166,10 @@ try:
       ensure_frame_context()
 
       # 智慧定位：尋找包含該課程名稱、且可點擊的「報名」按鈕
-      smart_xpath = f"//tr[td//a[contains(text(), '{course_keyword}')]]//input[@value='報名' and not(@disabled)]"
+      smart_xpath = (
+          "//tr[td//a[contains(text(),"
+          f" '{course_keyword}')]]//input[@value='報名' and not(@disabled)]"
+      )
 
       ensure_frame_context()
       buttons = driver.find_elements(By.XPATH, smart_xpath)
@@ -181,22 +186,23 @@ try:
         except Exception:
           pass
 
+        # 檢查是否彈出資格不符/重複報名警告
         if check_and_handle_warning():
-          print(f"『{course_keyword}』無法報名（可能已額滿或已報名），換下一個備用課程...")
+          print(f"『{course_keyword}』無法報名（可能額滿、時間衝突或已報名），跳過此課。")
           break
         else:
-          print(f"『{course_keyword}』報名成功！")
-          enrollment_successful = True
-          break
+          print(f"🎉 『{course_keyword}』報名成功！")
+          success_courses.append(course_keyword)
+          course_enrolled = True
+          break  # 該課程已成功報名，離開分頁迴圈，換下一個目標課程
 
-    if enrollment_successful:
-      break
-
-  if not enrollment_successful:
-    print("\n[結果] 嘗試了所有指定課程與分頁，未成功報名新課程。")
-
-  print("\n腳本執行完成。")
-  time.sleep(3)
+  # 最終結果輸出
+  print("\n" + "=" * 40)
+  if success_courses:
+    print(f"【搶課完成】成功報名的課程：{', '.join(success_courses)}")
+  else:
+    print("【搶課完成】未成功報名任何新課程。")
+  print("=" * 40)
 
 finally:
   driver.quit()
