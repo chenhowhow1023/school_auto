@@ -6,7 +6,7 @@
 在終端機切換至專案目錄，並執行安裝腳本（會自動在同目錄下建立 `./venv` 並安裝依賴）：
 
 ```bash
-gh clone https://github.com/chenhowhow1023/school_auto.git
+gh repo clone chenhowhow1023/school_auto
 cd school_auto
 chmod +x install.sh run.sh
 sudo ./install.sh
