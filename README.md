@@ -7,7 +7,7 @@
 
 ```bash
 chmod +x install.sh run.sh
-./install.sh
+./run.sh
 ```
 ## 腳本設定
 
