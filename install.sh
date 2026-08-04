@@ -6,6 +6,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 cd "$DIR"
 
 echo "[1/3] 安裝系統底層需求與 Google Chrome..."
+echo "sudo提高權限"
 sudo apt update
 sudo apt install -y python3-venv python3-pip wget
 
