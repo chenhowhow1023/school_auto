@@ -9,7 +9,7 @@
 gh repo clone chenhowhow1023/school_auto
 cd school_auto
 chmod +x install.sh run.sh
-sudo ./install.sh
+./install.sh
 ```
 ## 腳本設定
 
